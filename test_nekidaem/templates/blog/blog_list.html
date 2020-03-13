@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Список блогов</h3>
+
+<ul class="list-group">
+{% for blog in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'post-list' user=blog.author.id %}">{{ blog.author.username }}</a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

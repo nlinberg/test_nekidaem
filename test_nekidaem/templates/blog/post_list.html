@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><a href=""><button type="button" class="btn btn-primary">Подписаться на блог</button></a></p>
+<h3>Записи в блоге</h3>
+
+<ul class="list-group">
+{% for post in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'post-detail' pk=post.pk %}">{{ post.title }}</a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

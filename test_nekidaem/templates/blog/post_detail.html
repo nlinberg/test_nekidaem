@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{ object.title }}</h3>
+<p>{{ object.text }}</p>
+<p>Создан: {{ object.created }}</p>
+<p>Автор: {{ object.blog.author}}</p>
+
+{% endblock %}
