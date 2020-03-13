@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  django:
+    restart: always
+    build: .
+    command: ./run_web.sh
+    volumes:
+      - ./test_nekidaem:/code
+    ports:
+      - "8015:8015"
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "8016:8016"
+    volumes_from:
+      - django
+    links:
+      - django:django
+    depends_on:
+      - django

@@ -1,0 +1,13 @@
+server {
+  listen 8016;
+  access_log off;
+
+  location /static/ {
+    root /code;
+    expires 30d;
+  }
+
+  location / {
+    proxy_pass http://django:8015;
+  }
+}
