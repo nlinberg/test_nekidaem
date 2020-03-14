@@ -122,3 +122,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/code/static/'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'test_nekidaem@xdx.su'
+EMAIL_HOST_PASSWORD = 'test_nekidaem1q2w3e'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'test_nekidaem@xdx.su'
