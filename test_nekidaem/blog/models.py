@@ -7,6 +7,7 @@ from django.urls import reverse
 
 class Blog(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE)
+    followers = models.ManyToManyField(User, blank=True, related_name='is_follower')
 
     class Meta:
         verbose_name = 'блог'

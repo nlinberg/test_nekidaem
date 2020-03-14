@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p><a href=""><button type="button" class="btn btn-primary">Подписаться на блог</button></a></p>
+{% if blog.author != request.user %}
+<p><a href="{% url 'blog-follow' blog=blog.id %}">
+    {% if request.user in blog.followers.all %}
+    <button type="button" class="btn btn-info">Отписаться от блога</button>
+    {% else %}
+    <button type="button" class="btn btn-primary">Подписаться на блог</button>
+    {% endif %}
+</a></p>
+{% endif %}
 <h3>Записи в блоге</h3>
 
 <ul class="list-group">
