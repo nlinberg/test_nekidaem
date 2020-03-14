@@ -29,6 +29,7 @@ class Post(models.Model):
     title = models.CharField(max_length=300)
     text = models.CharField(max_length=10000)
     created = models.DateTimeField(auto_now_add=True)
+    viewed = models.ManyToManyField(User, related_name='is_viewed')
 
     class Meta:
         verbose_name = 'пост'

@@ -51,6 +51,10 @@ class BlogFollowRedirectView(RedirectView):
         user = self.request.user
         if user in blog.followers.all():
             blog.followers.remove(user)
+            # delete relationship about viewed posts in this blog by user
+            _posts = Post.objects.filter(blog=blog, viewed__in=[user])
+            for _ in _posts:
+                _.viewed.remove(user)
         else:
             blog.followers.add(user)
         return reverse('post-list', kwargs={'user': blog.author.id})
@@ -63,3 +67,12 @@ class FeedListView(ListView):
         blog_list = Blog.objects.filter(followers=self.request.user)
         post_list = Post.objects.filter(blog__in=blog_list)
         return post_list
+
+
+class PostViewedRedirectView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        user = self.request.user
+        post = Post.objects.get(pk=self.kwargs['pk'])
+        if user not in post.viewed.all():
+            post.viewed.add(user)
+        return reverse('feed-list')
