@@ -44,10 +44,6 @@ class PostListView(ListView):
 class BlogListView(ListView):
     model = Blog
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
 
 class BlogFollowRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
@@ -58,3 +54,12 @@ class BlogFollowRedirectView(RedirectView):
         else:
             blog.followers.add(user)
         return reverse('post-list', kwargs={'user': blog.author.id})
+
+
+class FeedListView(ListView):
+    template_name = 'blog/feed_list.html'
+
+    def get_queryset(self):
+        blog_list = Blog.objects.filter(followers=self.request.user)
+        post_list = Post.objects.filter(blog__in=blog_list)
+        return post_list

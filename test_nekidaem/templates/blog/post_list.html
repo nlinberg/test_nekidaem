@@ -17,6 +17,8 @@
     <li class="list-group-item">
         <a href="{% url 'post-detail' pk=post.pk %}">{{ post.title }}</a>
     </li>
+{% empty %}
+    <p>Блог пуст... Создайте новый пост</p>
 {% endfor %}
 </ul>
 

@@ -13,7 +13,7 @@
   <body>
     <div class="container">
         <nav class="nav">
-            <a class="nav-link" href="#">Лента</a>
+            <a class="nav-link" href="{% url 'feed-list' %}">Лента</a>
             <a class="nav-link" href="{% url 'blog-list' %}">Все блоги</a>
             <a class="nav-link" href="{% url 'post-list' request.user.pk %}">Мой блог</a>
             <a class="nav-link" href="{% url 'post-create' %}">Написать пост</a>

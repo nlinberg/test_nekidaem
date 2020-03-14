@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Лента</h3>
+
+<ul class="list-group">
+{% for post in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'post-detail' pk=post.pk %}">{{ post.title }}</a>
+    </li>
+{% empty %}
+    <p>Лента пуста... Подпишитесь на любой блог</p>
+{% endfor %}
+</ul>
+
+{% endblock %}
